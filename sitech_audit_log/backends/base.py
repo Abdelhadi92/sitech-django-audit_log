@@ -10,7 +10,7 @@ class BaseLoggingBackend(ABC):
     """
 
     @abstractmethod
-    def save(self, data):
+    def save(self, audit_log):
         """
         Save the log for one or more Models objects
         """
