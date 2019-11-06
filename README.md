@@ -13,3 +13,7 @@ Add `sitech_audit_log` to your `INSTALLED_APPS` in settings.py:
     'sitech_audit_log',
  )
 ```
+Run the migration command:
+```bash
+ python manage.py migrate
+```
