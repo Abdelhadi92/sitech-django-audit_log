@@ -1,7 +1,12 @@
+# Sitech Django Audit Log
+`sitech-django-audit_log` is a Django application and library for  creates an audit history for each model events (create, update and delete)  automatically.
+
+<br/>
+
+
 ## Installation
 
 Run the [pip](https://pip.pypa.io/en/stable/) command to install the latest version:
-
 ```bash
  pip install git+https://github.com/sitmena/sitech-django-audit_log.git
 ```
