@@ -1,5 +1,6 @@
 # Sitech Django Audit Log
 `sitech-django-audit_log` is a Django application and library for  creates an audit history for each model events (create, update and delete)  automatically.
+
 <br/>
 
 
@@ -19,6 +20,7 @@ You can do the following to install "Request Middleware":
     'sitech_middlewares.request.RequestMiddleware',
  )
 ```
+<br/>
 
 
 ## Installation
