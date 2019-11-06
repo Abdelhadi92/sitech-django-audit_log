@@ -12,6 +12,6 @@ class BaseLoggingBackend(ABC):
     @abstractmethod
     def save(self, audit_log):
         """
-        Save the log for one or more Models objects
+        Save the given audit_log.
         """
         pass
