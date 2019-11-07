@@ -7,7 +7,7 @@ from sitech_audit_log.utils import get_user_agent, get_user_ip
 def _post_save_handler(sender, instance, created, **kwargs):
     if isinstance(instance, AuditLogMixin):
         operation = "created" if created else "updated"
-        if operation in instance.log_operation:
+        if operation in instance.log_operations:
             values = _get_dirty_values(instance, operation)
             if values:
                 request = get_current_request()
@@ -22,7 +22,7 @@ def _post_save_handler(sender, instance, created, **kwargs):
 def _post_delete_handler(sender, instance, **kwargs):
     if isinstance(instance, AuditLogMixin):
         operation = "deleted"
-        if operation in instance.log_operation:
+        if operation in instance.log_operations:
             values = _get_dirty_values(instance, operation)
             if values:
                 request = get_current_request()

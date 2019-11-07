@@ -4,9 +4,8 @@ from django.utils.module_loading import import_string
 
 
 class AuditLogMixin:
-    log_operation = ['deleted', 'created', 'updated']
+    log_operations = ['deleted', 'created', 'updated']
     ignore_changed_fields = []
-    # log_only_dirty_fields = True
 
 class AuditLogManager:
 
@@ -16,7 +15,7 @@ class AuditLogManager:
             raise Exception("The audit_log should be instance of AuditLog")
 
         if not storages:
-            storages = getattr(settings, 'AUDIT_LOG_STORAGES', False)
+            storages = getattr(settings, 'AUDIT_LOG_STORAGES', ['sitech_audit_log.backends.database.DatabaseBackend'])
         if not storages:
             return False
 
