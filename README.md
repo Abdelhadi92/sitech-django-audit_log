@@ -30,6 +30,7 @@ You can do the following to install `RequestMiddleware`:
     'sitech_middlewares.request.RequestMiddleware',
  )
 ```
+<br>
 
 ## Installation
 
