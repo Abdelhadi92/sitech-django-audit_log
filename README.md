@@ -49,7 +49,7 @@ By default the package will log the  `created`,  `updated`,  `deleted`  operatio
  from sitech_audit_log import AuditLogMixin
 
  class Profile(models.Model, AuditLogMixin):  
-	log_operation = ['updated'
+	log_operation = ['updated']
 	phone = models.CharField(max_length=255, verbose_name='Phone')
 	address = models.TextField(max_length=512,verbose_name='Address')
 ```	
