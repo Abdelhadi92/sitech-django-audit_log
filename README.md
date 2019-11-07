@@ -1,5 +1,5 @@
 # Sitech Django Audit Log
-`sitech-django-audit_log` is a Django application and library for creates an audit history for each model events (create, update and delete) into database, file, and many other stores automatically.
+`sitech-django-audit_log` is a Django application and library for creates an audit history for each model operations (create, update and delete) into database, file, and many other stores automatically.
 
 <br/>
 
@@ -39,3 +39,17 @@ You can do the following to install "Request Middleware":
 ```bash
  python manage.py migrate
 ```
+<br>
+
+## Customizing the operations being logged
+By default the package will log the  `created`,  `updated`,  `deleted`  operations. You can modify this behaviour by setting the  `log_operation`  property on your model.
+
+```python
+ from django.db import models
+ from sitech_audit_log import AuditLogMixin
+
+ class Profile(models.Model, AuditLogMixin):  
+	log_operation = ['updated'
+	phone = models.CharField(max_length=255, verbose_name='Phone')
+	address = models.TextField(max_length=512,verbose_name='Address')
+```	
