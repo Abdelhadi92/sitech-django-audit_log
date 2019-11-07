@@ -20,8 +20,6 @@ You can do the following to install "Request Middleware":
     'sitech_middlewares.request.RequestMiddleware',
  )
 ```
-<br/>
-
 
 ## Installation
 
