@@ -48,7 +48,14 @@ You can do the following to install `RequestMiddleware`:
     'sitech_audit_log',
  )
 ```
-3. Run the migration command:
+
+3. Add the follwoing line in settings.py:
+
+```bash
+ JSONFIELD_ENCODER_CLASS = 'django.core.serializers.json.DjangoJSONEncoder'
+```
+
+4. Run the migration command:
 ```bash
  python manage.py migrate
 ```
