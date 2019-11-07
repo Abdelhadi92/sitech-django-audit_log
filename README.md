@@ -41,6 +41,21 @@ You can do the following to install "Request Middleware":
 ```
 <br>
 
+## Usage
+A neat feature of this package is that it can automatically log operations such as when a model is created, updated and deleted. To make this work all you need to add  `AuditLogMixin`  to your model.
+
+Here's an example:
+```python
+ from django.db import models
+ from sitech_audit_log import AuditLogMixin
+
+ class Profile(models.Model, AuditLogMixin):  
+	phone = models.CharField(max_length=255, verbose_name='Phone')
+	address = models.TextField(max_length=512,verbose_name='Address')
+```	
+
+
+
 ### # Customizing the operations being logged
 By default the package will log the  `created`,  `updated`,  `deleted`  operations. You can modify this behaviour by setting the  `log_operation`  property on your model.
 
