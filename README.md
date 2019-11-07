@@ -1,6 +1,3 @@
-
-
-
 # Sitech Django Audit Log
 `sitech-django-audit_log` is a Django application and library for creates an audit history for each model operations (create, update and delete) into database, file, and many other stores automatically.
 
@@ -99,3 +96,17 @@ Changing `phone` will not trigger an audit being logged.
 ### # Defining a custom log storage backend
 
 Custom log storage backends should subclass `BaseLoggingBackend` that is located in the `sitech_audit_log.backends.base` module. A custom log storage  backend must implement the `save(self, audit_log)` method. This method receives an instance of `AuditLog` class.
+
+Here’s an example:
+
+```python
+ from sitech_audit_log.backends.base import BaseLoggingBackend
+
+ class TestBackend(BaseLoggingBackend):  
+	ignore_changed_fields = ['phone']
+	def save(self, audit_log):  
+    	"""  
+	 	Save the given audit_log. 
+	 	""" 
+	 	print(audit_log.operation, audit_log.values)
+```	
