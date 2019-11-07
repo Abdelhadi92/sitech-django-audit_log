@@ -9,7 +9,8 @@
 To use this library, you'll need to have the following packages installed:
 
  **`- TrackingFieldsMixin`** from [sitech-django-models](https://github.com/sitmena/sitech-django-models)  and it is a Python package that allow you to access the old values of the model fields.
- You can run the [pip](https://pip.pypa.io/en/stable/) command to install the latest version:
+ 
+You can run the [pip](https://pip.pypa.io/en/stable/) command to install the latest version:
  ```bash
  pip install git+https://github.com/sitmena/sitech-django-models.git@v1.0
 ```
