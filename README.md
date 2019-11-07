@@ -127,7 +127,6 @@ Here’s an example:
  from sitech_audit_log.backends.base import BaseLoggingBackend
 
  class TestBackend(BaseLoggingBackend):  
-	ignore_changed_fields = ['phone']
 	def save(self, audit_log):  
     		"""  
 	 	Save the given audit_log. 
