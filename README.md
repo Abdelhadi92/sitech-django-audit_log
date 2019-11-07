@@ -1,3 +1,4 @@
+
 # Sitech Django Audit Log
 `sitech-django-audit_log` is a Django application and library for creates an audit history for each model operations (create, update and delete) into database, file, and many other stores automatically.
 
@@ -69,6 +70,15 @@ Here's an example:
 
 ### # Specifying  Log Storages:
 Sitech Django Audit Log with several log storages backends. With the exception of the 'DatabaseBackend' (which is the default).  If you have special log storage requirements, you can [write your own log storage backend](#-defining-a-custom-log-storage-backend).
+
+
+To specify your Log Storages backend, put the following in your settings:
+```python
+ AUDIT_LOG_STORAGES = [
+	 'sitech_audit_log.backends.database.DatabaseBackend'
+ ]
+```
+ The `AUDIT_LOG_STORAGES` should be a list of Python path names that point to Log Storages classes.
 
 <hr>	
 
