@@ -41,7 +41,7 @@ You can do the following to install "Request Middleware":
 ```
 <br>
 
-## # Customizing the operations being logged
+### # Customizing the operations being logged
 By default the package will log the  `created`,  `updated`,  `deleted`  operations. You can modify this behaviour by setting the  `log_operation`  property on your model.
 
 ```python
@@ -54,7 +54,7 @@ By default the package will log the  `created`,  `updated`,  `deleted`  operatio
 	address = models.TextField(max_length=512,verbose_name='Address')
 ```	
 
-## # Ignoring changes to certain fields
+### # Ignoring changes to certain fields
 If your model contains fields whose change don't need to trigger an activity being logged you can use `ignore_changed_fields`
 
 ```python
