@@ -57,7 +57,7 @@ Here's an example:
 <hr>
 
 ### # Specifying  Log Storages:
-Sitech Django Audit Log with several log storages backends. With the exception of the 'DatabaseBackend' (which is the default).  If you have special log storage requirements, you can [write your own log storage backend](#).
+Sitech Django Audit Log with several log storages backends. With the exception of the 'DatabaseBackend' (which is the default).  If you have special log storage requirements, you can [write your own log storage backend](#-defining-a-custom-log-storage-backend).
 
 <hr>	
 
