@@ -38,7 +38,7 @@ You can do the following to install `RequestMiddleware`:
 
 1. Run the [pip](https://pip.pypa.io/en/stable/) command to install the latest version:
 ```bash
- pip install git+https://github.com/sitmena/sitech-django-audit_log.git
+ pip install git+https://github.com/sitmena/sitech-django-audit_log.git@v0.1
 ```
 
 2. Add `sitech_audit_log` to your `INSTALLED_APPS` in settings.py:
@@ -48,7 +48,14 @@ You can do the following to install `RequestMiddleware`:
     'sitech_audit_log',
  )
 ```
-3. Run the migration command:
+
+3. Add the follwoing line in settings.py:
+
+```bash
+ JSONFIELD_ENCODER_CLASS = 'django.core.serializers.json.DjangoJSONEncoder'
+```
+
+4. Run the migration command:
 ```bash
  python manage.py migrate
 ```
