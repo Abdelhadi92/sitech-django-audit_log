@@ -26,13 +26,11 @@ class AuditLogManager:
 
 
 class AuditLog:
-    __slots__ = ['auditable_id', 'auditable_type', 'operation', 'values', 'creator', 'creator_ip', 'creator_agent', 'created_at']
+    __slots__ = ['auditable', 'operation', 'values', 'creator', 'creator_ip', 'creator_agent', 'created_at']
 
     # Create a new AuditLog instance.
     def __init__(self, auditable=None, operation=None, values=[], creator=None, creator_ip=None, creator_agent=None, created_at=None):
-        if auditable:
-            self.auditable_type = auditable._meta.label_lower
-            self.auditable_id = auditable.id
+        self.auditable = auditable
         self.operation = operation
         self.values = values
         self.creator = creator
@@ -42,8 +40,7 @@ class AuditLog:
 
     # Set the log auditable.
     def set_auditable(self, auditable):
-        self.auditable_type = auditable._meta.label_lower
-        self.auditable_id = auditable.id
+        self.auditable = auditable
         return self
 
     # Set the log operation.

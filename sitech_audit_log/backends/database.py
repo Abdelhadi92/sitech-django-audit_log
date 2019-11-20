@@ -11,8 +11,7 @@ class DatabaseBackend(BaseLoggingBackend):
         Save the given audit_log.
         """
         DatabaseLogging(
-            auditable_id=audit_log.auditable_id,
-            auditable_type=audit_log.auditable_type,
+            auditable=audit_log.auditable,
             operation=audit_log.operation,
             values=audit_log.values,
             creator=audit_log.creator,
