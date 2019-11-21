@@ -1,6 +1,7 @@
 default_app_config = 'sitech_audit_log.apps.AuditLogConfig'
 from django.conf import settings
 from django.utils.module_loading import import_string
+from django.utils import timezone
 
 
 class AuditLogMixin:
@@ -29,14 +30,14 @@ class AuditLog:
     __slots__ = ['auditable', 'operation', 'values', 'creator', 'creator_ip', 'creator_agent', 'created_at']
 
     # Create a new AuditLog instance.
-    def __init__(self, auditable=None, operation=None, values=[], creator=None, creator_ip=None, creator_agent=None, created_at=None):
+    def __init__(self, auditable=None, operation=None, values=None, creator=None, creator_ip=None, creator_agent=None, created_at=None):
         self.auditable = auditable
         self.operation = operation
-        self.values = values
+        self.values = [] if values is None else values
         self.creator = creator
         self.creator_ip = creator_ip
         self.creator_agent = creator_agent
-        self.created_at = created_at
+        self.created_at = timezone.now() if created_at is None else created_at
 
     # Set the log auditable.
     def set_auditable(self, auditable):
@@ -76,4 +77,3 @@ class AuditLog:
     # Set the log created_at.
     def save(self, storages=None):
         AuditLogManager.save(self)
-        

@@ -8,33 +8,14 @@ from django.db import connections
 def _post_save_handler(sender, instance, created, using, **kwargs):
     if isinstance(instance, AuditLogMixin):
         operation = "created" if created else "updated"
-        if operation in instance.log_operations:
-            values = _get_dirty_values(instance, operation, using)
-            if values:
-                request = get_current_request()
-                user = get_current_user()
-                if not user.is_anonymous:
-                    user_ip = get_user_ip(request)
-                    user_agent = get_user_agent(request)
-
-                    AuditLog().set_auditable(instance).set_operation(operation).set_values(values).set_creator(
-                        user).set_creator_agent(user_agent).set_creator_ip(user_ip).save()
+        _create_audit_log(operation=operation, instance=instance, using=using)
 
 
 def _post_delete_handler(sender, instance, using, **kwargs):
     if isinstance(instance, AuditLogMixin):
         operation = "deleted"
-        if operation in instance.log_operations:
-            values = _get_dirty_values(instance, operation, using)
-            if values:
-                request = get_current_request()
-                user = get_current_user()
-                if not user.is_anonymous:
-                    user_ip = get_user_ip(request)
-                    user_agent = get_user_agent(request)
+        _create_audit_log(operation=operation, instance=instance, using=using)
 
-                    AuditLog().set_auditable(instance).set_operation(operation).set_values(values).set_creator(
-                        user).set_creator_agent(user_agent).set_creator_ip(user_ip).save()
 
 def _get_dirty_values(instance, operation, using):
     values = []
@@ -50,6 +31,29 @@ def _get_dirty_values(instance, operation, using):
                     field_value['old_value'] = field.get_db_prep_value(instance._old_fields[attname], connections[using])
                 values.append(field_value)
     return values
+
+
+def _create_audit_log(operation, instance, using):
+    if operation in instance.log_operations:
+        values = _get_dirty_values(instance, operation, using)
+        if not values:
+            return
+        request = get_current_request()
+        user = get_current_user()
+        if user.is_anonymous:
+            user = None
+        user_ip = get_user_ip(request)
+        user_agent = get_user_agent(request)
+
+        AuditLog(
+            auditable=instance,
+            operation=operation,
+            values=values,
+            creator=user,
+            creator_agent=user_agent,
+            creator_ip=user_ip
+        ).save()
+
 
 post_save.connect(_post_save_handler)
 post_delete.connect(_post_delete_handler)
